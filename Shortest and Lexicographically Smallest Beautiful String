@@ -1,0 +1,24 @@
+    string shortestBeautifulSubstring(string s, int k) {
+        int n=s.length();
+        set<string> st;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                int temp1=0;string tempStr="";
+                for(int x=i;x<=j;x++)
+                {
+                    tempStr+=s[x];
+                    if(s[x]=='1') temp1++;
+                }
+                if(temp1==k) st.insert(tempStr);
+            }
+        }
+        string ans="";
+        for(auto it: st) {ans+=it; break;}
+        for(auto it: st)
+        {
+            if(it.size()<ans.size()) ans=it;
+        }
+        return ans;
+    }
