@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> pre(n,0), suf(n,0);
+        int prefix=nums[0];
+        for(int i=0;i<n;i++)
+        {
+            pre[i]=prefix;
+            prefix=min(prefix,nums[i]);
+        }
+        int suffix=nums[n-1];
+        for(int i=n-1;i>=0;i--)
+        {
+            suf[i]=suffix;
+            suffix=max(suffix,nums[i]);
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(pre[i]<nums[i] && nums[i]<suf[i])
+                return true;
+        }
+        return false;
+    }
+};
